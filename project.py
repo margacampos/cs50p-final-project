@@ -30,9 +30,17 @@ def fetch_workflow_status():
         logging.error(f"Error fetching workflow status: {e}")
         return None
 
+def log_status(status):
+    if status == "No recent workflows found":
+        logging.info(status)
+    elif status:
+        logging.info(f"Latest Workflow Status: {status}")
+    else:
+        logging.warning("Failed to fetch workflow status")
+
 def main():
     status = fetch_workflow_status()
-    logging.info(f"Latest Workflow Status: {status}")
+    log_status(status)
 
 if __name__ == "__main__":
     main()
